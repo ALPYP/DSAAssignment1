@@ -21,8 +21,9 @@ public class Edge implements Serializable {
 	 * @param node2
 	 */
 	public Edge(Node fromNode, Node toNode) {
-		// TODO
-		
+		this.fromNode = fromNode;
+		this.toNode = toNode;
+		this.weight = this.calculateWeight();
 	}
 
 	public Node getFromNode() {
@@ -52,9 +53,10 @@ public class Edge implements Serializable {
 	 * between two 2D points, p1 and p2, that are the positions of each node.
 	 */
 	private double calculateWeight() {
-		// TODO
-		
-		return -1;
+		// Calculate distance between fromNode and toNode positions
+		double distance = this.fromNode.getPosition().distance(toNode.getPosition());
+		// Then multiply by the'(0.01+|e2-e1|)' part and use Math.abs for the absolute value
+		return (distance * (0.01 * Math.abs(fromNode.getElevation() - toNode.getElevation())));
 	}
 
 	public double getWeight() {
