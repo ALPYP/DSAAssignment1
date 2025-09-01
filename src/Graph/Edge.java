@@ -56,7 +56,7 @@ public class Edge implements Serializable {
 		// Calculate distance between fromNode and toNode positions
 		double distance = this.fromNode.getPosition().distance(toNode.getPosition());
 		// Then multiply by the'(0.01+|e2-e1|)' part and use Math.abs for the absolute value
-		return (distance * (0.01 * Math.abs(fromNode.getElevation() - toNode.getElevation())));
+		return (distance * (0.01 + Math.abs(fromNode.getElevation() - toNode.getElevation())));
 	}
 
 	public double getWeight() {
