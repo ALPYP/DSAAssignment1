@@ -28,9 +28,8 @@ public class Position implements Serializable {
 	 * @return The distance between the points
 	 */
 	public double distance(Position v2) {
-		// TODO
-		
-		return -1.0;
+		// Calculates Euclidean distance between this and v2
+		return Math.sqrt(Math.pow((v2.x - this.x), 2) + Math.pow((v2.y - this.y), 2));
 	}
 
 	@Override
