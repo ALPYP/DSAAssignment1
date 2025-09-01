@@ -27,21 +27,34 @@ public class Graph {
 	 * @param nodes An array of Node objects to be connected
 	 * @return An array of connected Node objects
 	 */
-	public void connectNodes(Node[] nodes) {
+	public Node[] connectNodes(Node[] nodes) {
 		// TODO
 		
-		Node currentNode = nodes[0];
+		// May need to check if nodes is correct e.g. 100 nodes, but test and if not req then don't add that
+		Node[] newNodes = nodes;
+		ArrayList<Edge> currentEdges = new ArrayList<Edge>();
 		for (int i = 0; i < 100; i++) {
 			// Top row nodes
 			if (i < 10) {
 				switch(i) {
 					// Top left node
 					case 0:
+						currentEdges.add(new Edge(nodes[i], nodes[1]));
+						currentEdges.add(new Edge(nodes[i], nodes[10]));
+						currentEdges.add(new Edge(nodes[i], nodes[11]));
 						break;
 					// Top right node
 					case 9:
+						currentEdges.add(new Edge(nodes[i], nodes[8]));
+						currentEdges.add(new Edge(nodes[i], nodes[19]));
+						currentEdges.add(new Edge(nodes[i], nodes[18]));
 						break;
 					default:
+						currentEdges.add(new Edge(nodes[i], nodes[i + 1]));
+						currentEdges.add(new Edge(nodes[i], nodes[i - 1]));
+						currentEdges.add(new Edge(nodes[i], nodes[i + 9]));
+						currentEdges.add(new Edge(nodes[i], nodes[i + 10]));
+						currentEdges.add(new Edge(nodes[i], nodes[i + 11]));
 						break;
 				}
 			}
@@ -50,28 +63,56 @@ public class Graph {
 				switch(i) {
 					// Bottom left node
 					case 90:
+						currentEdges.add(new Edge(nodes[i], nodes[80]));
+						currentEdges.add(new Edge(nodes[i], nodes[81]));
+						currentEdges.add(new Edge(nodes[i], nodes[91]));
 						break;
 					// Bottom right node
 					case 99:
+						currentEdges.add(new Edge(nodes[i], nodes[89]));
+						currentEdges.add(new Edge(nodes[i], nodes[88]));
+						currentEdges.add(new Edge(nodes[i], nodes[98]));
 						break;
 					default:
+						currentEdges.add(new Edge(nodes[i], nodes[i - 1]));
+						currentEdges.add(new Edge(nodes[i], nodes[i + 1]));
+						currentEdges.add(new Edge(nodes[i], nodes[i - 9]));
+						currentEdges.add(new Edge(nodes[i], nodes[i - 10]));
+						currentEdges.add(new Edge(nodes[i], nodes[i - 11]));
 						break;
 				}
 			}
 			// Left nodes
 			else if (i % 10 == 9) {
-				
+				currentEdges.add(new Edge(nodes[i], nodes[i + 10]));
+				currentEdges.add(new Edge(nodes[i], nodes[i - 10]));
+				currentEdges.add(new Edge(nodes[i], nodes[i + 1]));
+				currentEdges.add(new Edge(nodes[i], nodes[i - 9]));
+				currentEdges.add(new Edge(nodes[i], nodes[i + 11]));
 			}
 			// Right nodes
 			else if (i % 10 == 0) {
-				
+				currentEdges.add(new Edge(nodes[i], nodes[i - 10]));
+				currentEdges.add(new Edge(nodes[i], nodes[i + 10]));
+				currentEdges.add(new Edge(nodes[i], nodes[i - 1]));
+				currentEdges.add(new Edge(nodes[i], nodes[i + 9]));
+				currentEdges.add(new Edge(nodes[i], nodes[i - 11]));
 			}
 			// Middle nodes
 			else {
-				
+				currentEdges.add(new Edge(nodes[i], nodes[i + 1]));
+				currentEdges.add(new Edge(nodes[i], nodes[i - 1]));
+				currentEdges.add(new Edge(nodes[i], nodes[i + 10]));
+				currentEdges.add(new Edge(nodes[i], nodes[i - 10]));
+				currentEdges.add(new Edge(nodes[i], nodes[i + 11]));
+				currentEdges.add(new Edge(nodes[i], nodes[i - 11]));
+				currentEdges.add(new Edge(nodes[i], nodes[i + 9]));
+				currentEdges.add(new Edge(nodes[i], nodes[i - 9]));
 			}
+			newNodes[i].setEdges(currentEdges);
+			currentEdges = new ArrayList<Edge>();
 		}
-
+		return newNodes;
 	}
 
 
