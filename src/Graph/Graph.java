@@ -29,6 +29,48 @@ public class Graph {
 	 */
 	public void connectNodes(Node[] nodes) {
 		// TODO
+		
+		Node currentNode = nodes[0];
+		for (int i = 0; i < 100; i++) {
+			// Top row nodes
+			if (i < 10) {
+				switch(i) {
+					// Top left node
+					case 0:
+						break;
+					// Top right node
+					case 9:
+						break;
+					default:
+						break;
+				}
+			}
+			// Bottom row nodes
+			else if (i > 90) {
+				switch(i) {
+					// Bottom left node
+					case 90:
+						break;
+					// Bottom right node
+					case 99:
+						break;
+					default:
+						break;
+				}
+			}
+			// Left nodes
+			else if (i % 10 == 9) {
+				
+			}
+			// Right nodes
+			else if (i % 10 == 0) {
+				
+			}
+			// Middle nodes
+			else {
+				
+			}
+		}
 
 	}
 
